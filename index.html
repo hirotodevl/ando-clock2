@@ -1,8 +1,9 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>バグ修正できたかな？</title>
+  <title>アナログ時計</title>
   <style>
     body {
       display: flex;
@@ -13,9 +14,9 @@
     }
 
     .clock {
-      width: 300px;
-      height: 300px;
-      border: 8px solid black;
+      width: 500px;
+      height: 500px;
+      border: 12px solid black;
       border-radius: 50%;
       position: relative;
       background: white;
@@ -25,7 +26,7 @@
     .hand {
       position: absolute;
       width: 50%;
-      height: 2px;
+      height: 4px;
       background: black;
       top: 50%;
       transform-origin: 100%;
@@ -34,28 +35,28 @@
     }
 
     .hour {
-      height: 6px;
-      width: 35%;
-      left: 15%;
+      height: 10px;
+      width: 30%;
+      left: 20%;
     }
 
     .minute {
-      height: 4px;
+      height: 6px;
+      width: 40%;
+      left: 10%;
+    }
+
+    .second {
+      height: 3px;
+      background: red;
       width: 45%;
       left: 5%;
     }
 
-    .second {
-      height: 2px;
-      background: red;
-      width: 48%;
-      left: 2%;
-    }
-
     /* 中心の丸 */
     .center {
-      width: 12px;
-      height: 12px;
+      width: 18px;
+      height: 18px;
       background: black;
       border-radius: 50%;
       position: absolute;
@@ -67,7 +68,7 @@
     /* 数字 */
     .number {
       position: absolute;
-      font-size: 20px;
+      font-size: 28px;
       font-weight: bold;
       color: black;
       transform: translate(-50%, -50%);
@@ -85,14 +86,15 @@
   <script>
     // 数字の配置
     const clock = document.getElementById('clock');
+    const centerX = 250, centerY = 250; // 時計の中心
     for (let i = 1; i <= 12; i++) {
       const number = document.createElement('div');
       number.className = 'number';
       number.innerText = i;
       const angle = (i - 3) * (Math.PI * 2) / 12; // 3時方向を基準
-      const radius = 130;
-      const x = 150 + radius * Math.cos(angle);
-      const y = 150 + radius * Math.sin(angle);
+      const radius = 210; // 数字の半径
+      const x = centerX + radius * Math.cos(angle);
+      const y = centerY + radius * Math.sin(angle);
       number.style.left = `${x}px`;
       number.style.top = `${y}px`;
       clock.appendChild(number);
